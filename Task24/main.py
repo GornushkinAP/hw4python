@@ -5,3 +5,28 @@
 # собирающих модулей. Собирающий модуль за один заход, находясь непосредственно перед некоторым кустом, собирает ягоды с этого куста и с двух соседних с ним.
 # Напишите программу для нахождения максимального числа ягод, которое может собрать за один заход собирающий модуль, находясь перед некоторым
 # кустом заданной во входном файле грядки.
+
+def max_harvest(N, berries):
+    max_harvest = 0
+
+    for i in range(N):
+        
+        harvest = berries[i] + berries[(i - 1) % N] + berries[(i + 1) % N]
+        
+        
+        if harvest > max_harvest:
+            max_harvest = harvest
+
+    return max_harvest
+
+
+N = int(input("Введите количество кустов: "))
+berries = []
+
+for i in range(N):
+    berry = int(input(f"Введите количество ягод на кусте {i + 1}: "))
+    berries.append(berry)
+
+
+result = max_harvest(N, berries)
+print(f"Максимальное количество ягод, которое можно собрать за один заход: {result}")
